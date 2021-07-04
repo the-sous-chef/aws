@@ -1,0 +1,12 @@
+{
+    "extends": "./tsconfig",
+    "compilerOptions": {
+        "diagnostics": true,
+        "extendedDiagnostics": true
+    },
+    "exclude": [
+        "cdk.out",
+        "node_modules/**/*",
+        ".vscode/**/*"
+    ]
+}
