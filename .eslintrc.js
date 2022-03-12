@@ -1,9 +1,13 @@
+const path = require('path');
+
 module.exports = {
     env: {
+        browser: true,
         'jest/globals': true,
     },
     extends: [
         'airbnb',
+        'airbnb/hooks',
         'plugin:@typescript-eslint/recommended',
         'plugin:import/errors',
         'plugin:import/warnings',
@@ -38,7 +42,10 @@ module.exports = {
     parserOptions: {
         tsconfigRootDir: __dirname,
         ecmaVersion: 11,
-        project: './tsconfig.dev.json',
+        ecmaFeatures: {
+            jsx: true,
+        },
+        project: path.resolve(__dirname, 'tsconfig.json'),
         sourceType: 'module',
     },
     plugins: [
@@ -58,10 +65,11 @@ module.exports = {
         'import/no-extraneous-dependencies': ['error', {
             devDependencies: [
                 'jest/**',
-                '**/__tests__/**',
+                'src/**/__tests__/**',
+                '**/jest.config.js',
+                '**/webpack.config.js',
             ],
         }],
-        'import/no-unresolved': 'off',
         'import/prefer-default-export': 'off',
         indent: 'off',
         // Override airbnb's max line length rule to:
@@ -90,6 +98,21 @@ module.exports = {
         'no-shadow': 'off',
         'no-underscore-dangle': ['error', { allow: ['_embedded'] }],
         'no-use-before-define': 'off',
+        'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx'] }],
+        'react/jsx-indent': ['error', 4],
+        'react/jsx-indent-props': ['error', 4],
+        // This is silly to enable
+        'react/jsx-props-no-spreading': 'off',
+        'react/jsx-sort-props': ['error', {
+            callbacksLast: true,
+            ignoreCase: true,
+            noSortAlphabetically: true,
+            shorthandFirst: true,
+        }],
+        'react/jsx-uses-react': 'off',
+        'react/react-in-jsx-scope': 'off',
+        'react/require-default-props': 'off',
+        'react/state-in-constructor': 'off',
         // Sometimes we just need to
         '@typescript-eslint/ban-ts-ignore': 'off',
         '@typescript-eslint/ban-ts-comment': 'off',
@@ -122,7 +145,21 @@ module.exports = {
             ImportDeclaration: 1,
             flatTernaryExpressions: false,
             // list derived from https://github.com/benjamn/ast-types/blob/HEAD/def/jsx.js
-            ignoredNodes: [],
+            ignoredNodes: [
+                'JSXElement',
+                'JSXElement > *',
+                'JSXAttribute',
+                'JSXIdentifier',
+                'JSXNamespacedName',
+                'JSXMemberExpression',
+                'JSXSpreadAttribute',
+                'JSXExpressionContainer',
+                'JSXOpeningElement',
+                'JSXClosingElement',
+                'JSXText',
+                'JSXEmptyExpression',
+                'JSXSpreadChild',
+            ],
             ignoreComments: false,
         }],
         '@typescript-eslint/no-shadow': ['error'],
@@ -140,22 +177,20 @@ module.exports = {
         }],
     },
     settings: {
+        react: {
+            pragma: 'React',
+            version: 'detect',
+        },
         'import/parsers': {
             '@typescript-eslint/parser': [
                 '.ts',
                 '.tsx',
             ],
         },
-        'import/extensions': [
-            '.js',
-            '.jsx',
-            '.mjs',
-            '.ts',
-            '.txs',
-        ],
         'import/resolver': {
             typescript: {
                 alwaysTryTypes: true,
+                project: path.resolve(__dirname, 'tsconfig.json'),
             },
         },
     },
