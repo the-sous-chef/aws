@@ -16,11 +16,9 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 #### Development
 
 ```sh
-export CDK_NEW_BOOTSTRAP=1
-export AWS_ACCESS_KEY_ID=test
-export AWS_SECRET_ACCESS_KEY=test
-export AWS_DEFAULT_REGION=us-east-1
-export AWS_ACCOUNT_ID=000000000000
+source bootstrap.sh
+cdklocal bootstrap --context domainName=thesouschef.local
+cdklocal deploy --all --context domainName=thesouschef.local
 ```
 
 See [cdk localstack](https://github.com/localstack/aws-cdk-local)

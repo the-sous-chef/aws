@@ -1,6 +1,7 @@
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
+import { Tags } from 'aws-cdk-lib';
 
 export interface StackProps extends cdk.StackProps {
     name: string;
@@ -35,30 +36,27 @@ export class VPCStack extends cdk.Stack {
         cdk.Aspects.of(vpc).add(new cdk.Tag('Name', `${name}-vpc`));
 
         for (const subnet of vpc.publicSubnets) {
-            cdk.Aspects.of(subnet).add(
-                new cdk.Tag(
-                    'Name',
-                    `${vpc.node.id}-${subnet.node.id.replace(/Subnet[0-9]$/, '')}-${subnet.availabilityZone}`,
-                ),
+            Tags.of(subnet).add(
+                'Name',
+                `${vpc.node.id}-${subnet.node.id.replace(/Subnet[0-9]$/, '')}-${subnet.availabilityZone}`,
             );
+            // Tags.of(subnet).add('aws-cdk:subnet-name', 'Public');
         }
 
         for (const subnet of vpc.privateSubnets) {
-            cdk.Aspects.of(subnet).add(
-                new cdk.Tag(
-                    'Name',
-                    `${vpc.node.id}-${subnet.node.id.replace(/Subnet[0-9]$/, '')}-${subnet.availabilityZone}`,
-                ),
+            Tags.of(subnet).add(
+                'Name',
+                `${vpc.node.id}-${subnet.node.id.replace(/Subnet[0-9]$/, '')}-${subnet.availabilityZone}`,
             );
+            // Tags.of(subnet).add('aws-cdk:subnet-name', 'Private');
         }
 
         for (const subnet of vpc.isolatedSubnets) {
-            cdk.Aspects.of(subnet).add(
-                new cdk.Tag(
-                    'Name',
-                    `${vpc.node.id}-${subnet.node.id.replace(/Subnet[0-9]$/, '')}-${subnet.availabilityZone}`,
-                ),
+            Tags.of(subnet).add(
+                'Name',
+                `${vpc.node.id}-${subnet.node.id.replace(/Subnet[0-9]$/, '')}-${subnet.availabilityZone}`,
             );
+            // Tags.of(subnet).add('aws-cdk:subnet-name', 'Isolated');
         }
 
         // eslint-disable-next-line no-new
