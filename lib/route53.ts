@@ -13,11 +13,13 @@ export class Route53Stack extends cdk.Stack {
     constructor(scope: Construct, id: string, props: StackProps) {
         super(scope, id, props);
 
-        const { domainName } = props;
+        const { domainName, name } = props;
 
         const hostedZone = new route53.HostedZone(this, `${id}HostedZone`, {
             zoneName: domainName,
         });
+
+        cdk.Aspects.of(hostedZone).add(new cdk.Tag('Name', `${name}-hosted-zone`));
 
         // eslint-disable-next-line no-new
         const certificate = new acm.Certificate(this, `${id}Certificate`, {

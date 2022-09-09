@@ -40,7 +40,7 @@ export class VPCStack extends cdk.Stack {
                 'Name',
                 `${vpc.node.id}-${subnet.node.id.replace(/Subnet[0-9]$/, '')}-${subnet.availabilityZone}`,
             );
-            // Tags.of(subnet).add('aws-cdk:subnet-name', 'Public');
+            Tags.of(subnet).add('aws-cdk:subnet-name', 'Public');
         }
 
         for (const subnet of vpc.privateSubnets) {
@@ -48,7 +48,7 @@ export class VPCStack extends cdk.Stack {
                 'Name',
                 `${vpc.node.id}-${subnet.node.id.replace(/Subnet[0-9]$/, '')}-${subnet.availabilityZone}`,
             );
-            // Tags.of(subnet).add('aws-cdk:subnet-name', 'Private');
+            Tags.of(subnet).add('aws-cdk:subnet-name', 'Private');
         }
 
         for (const subnet of vpc.isolatedSubnets) {
@@ -56,7 +56,7 @@ export class VPCStack extends cdk.Stack {
                 'Name',
                 `${vpc.node.id}-${subnet.node.id.replace(/Subnet[0-9]$/, '')}-${subnet.availabilityZone}`,
             );
-            // Tags.of(subnet).add('aws-cdk:subnet-name', 'Isolated');
+            Tags.of(subnet).add('aws-cdk:subnet-name', 'Isolated');
         }
 
         // eslint-disable-next-line no-new

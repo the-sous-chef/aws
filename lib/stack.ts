@@ -1,5 +1,6 @@
-import { Stack as CdkStack, StackProps as CdkStackProps } from 'aws-cdk-lib';
+import { Stack, StackProps as CdkStackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
+import { EcrStack } from './ecr';
 import { Route53Stack } from './route53';
 import { VPCStack } from './vpc';
 
@@ -9,7 +10,7 @@ export interface StackProps extends CdkStackProps {
     stage: string;
 }
 
-export class CoreStack extends CdkStack {
+export class CoreStack extends Stack {
     constructor(scope: Construct, id: string, props: StackProps) {
         super(scope, id, props);
 
@@ -18,5 +19,8 @@ export class CoreStack extends CdkStack {
 
         // eslint-disable-next-line no-new
         new Route53Stack(scope, `${id}Route53Stack`, props);
+
+        // eslint-disable-next-line no-new
+        new EcrStack(scope, `${id}EcrStack`, props);
     }
 }
