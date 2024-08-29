@@ -1,43 +1,43 @@
 {
-    "name": "@thesouschef/infrastructure",
-    "version": "0.1.0",
-    "bin": {
-        "cdk": "bin/cdk.js"
-    },
-    "engines": {
-      "node": ">=22.7.0"
-    },
-    "engineStrict": true,
-    "scripts": {
-        "build": "tsc",
-        "watch": "tsc -w",
-        "cdk": "cdk",
-        "format": "prettier . --ignore-unknown --write",
-        "format:check": "prettier . --ignore-unknown --check",
-        "lint": "eslint .",
-        "prepare": "is-ci || sh ./scripts/prepare.sh",
-        "typecheck": "tsc --noEmit"
-    },
-    "dependencies": {
-        "@commitlint/config-conventional": "^19.4.1",
-        "@thesouschef/eslint-config": "^2.0.1",
-        "@thesouschef/prettier": "^2.0.1",
-        "@types/node": "22.5.1",
-        "aws-cdk": "^2.154.1",
-        "aws-cdk-lib": "2.154.1",
-        "aws-cdk-local": "^2.18.0",
-        "commitlint": "^19.4.1",
-        "constructs": "^10.3.0",
-        "husky": "^9.1.5",
-        "is-ci": "^3.0.1",
-        "lint-staged": "^15.2.9",
-        "pinst": "^3.0.0",
-        "prettier": "^3.3.3",
-        "ts-node": "^10.9.2",
-        "typescript": "^5.5.4"
-    },
-    "type": "module",
-    "volta": {
-        "node": "22.7.0"
-    }
+  "name": "@thesouschef/infrastructure",
+  "version": "0.1.0",
+  "bin": {
+    "cdk": "bin/cdk.js"
+  },
+  "engines": {
+    "node": ">=22.7.0"
+  },
+  "engineStrict": true,
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "cdk": "cdk",
+    "format": "prettier . --ignore-unknown --write",
+    "format:check": "prettier . --ignore-unknown --check",
+    "lint": "eslint .",
+    "prepare": "is-ci || sh ./scripts/prepare.sh",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@commitlint/config-conventional": "^19.4.1",
+    "@thesouschef/eslint-config": "^2.0.1",
+    "@thesouschef/prettier": "^2.0.1",
+    "@types/node": "22.5.1",
+    "aws-cdk": "^2.154.1",
+    "aws-cdk-lib": "2.154.1",
+    "aws-cdk-local": "^2.18.0",
+    "commitlint": "^19.4.1",
+    "constructs": "^10.3.0",
+    "husky": "^9.1.5",
+    "is-ci": "^3.0.1",
+    "lint-staged": "^15.2.9",
+    "pinst": "^3.0.0",
+    "prettier": "^3.3.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  },
+  "type": "module",
+  "volta": {
+    "node": "22.7.0"
+  }
 }
