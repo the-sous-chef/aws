@@ -1,36 +1,43 @@
 {
-    "name": "cdk",
+    "name": "@thesouschef/infrastructure",
     "version": "0.1.0",
     "bin": {
         "cdk": "bin/cdk.js"
     },
+    "engines": {
+      "node": ">=22.7.0"
+    },
+    "engineStrict": true,
     "scripts": {
         "build": "tsc",
         "watch": "tsc -w",
         "cdk": "cdk",
-        "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
-        "lint:fix": "npm run lint -- --fix"
+        "format": "prettier . --ignore-unknown --write",
+        "format:check": "prettier . --ignore-unknown --check",
+        "lint": "eslint .",
+        "prepare": "is-ci || sh ./scripts/prepare.sh",
+        "typecheck": "tsc --noEmit"
     },
     "dependencies": {
-        "@types/node": "18.7.16",
-        "@typescript-eslint/eslint-plugin": "^5.36.2",
-        "@typescript-eslint/parser": "^5.36.2",
-        "aws-cdk": "^2.41.0",
-        "aws-cdk-lib": "2.41.0",
-        "aws-cdk-local": "^2.15.0",
-        "constructs": "^10.1.96",
-        "eslint": "^8.23.0",
-        "eslint-config-airbnb-base": "^15.0.0",
-        "eslint-config-airbnb-typescript": "^17.0.0",
-        "eslint-import-resolver-typescript": "^3.5.1",
-        "eslint-plugin-import": "^2.26.0",
-        "prettier": "^2.7.1",
-        "source-map-support": "^0.5.21",
-        "ts-node": "^10.9.1",
-        "tsconfig-paths": "^4.1.0",
-        "typescript": "^4.8.2"
+        "@commitlint/config-conventional": "^19.4.1",
+        "@thesouschef/eslint-config": "^2.0.1",
+        "@thesouschef/prettier": "^2.0.1",
+        "@types/node": "22.5.1",
+        "aws-cdk": "^2.154.1",
+        "aws-cdk-lib": "2.154.1",
+        "aws-cdk-local": "^2.18.0",
+        "commitlint": "^19.4.1",
+        "constructs": "^10.3.0",
+        "husky": "^9.1.5",
+        "is-ci": "^3.0.1",
+        "lint-staged": "^15.2.9",
+        "pinst": "^3.0.0",
+        "prettier": "^3.3.3",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.5.4"
     },
+    "type": "module",
     "volta": {
-        "node": "18.7.0"
+        "node": "22.7.0"
     }
 }
